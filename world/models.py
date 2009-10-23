@@ -85,7 +85,7 @@ class Region(models.Model):
     """
     Data model for world regions.
     """
-    continents          = models.ManyToManyField(Continent)
+    continents          = models.ManyToManyField(Continent, null = True, blank = True)
     name_ar             = models.CharField("name (ar)", max_length = 200, blank = True)
     name_bg             = models.CharField("name (bg)", max_length = 200, blank = True)
     name_bn             = models.CharField("name (bn)", max_length = 200, blank = True)
@@ -162,10 +162,10 @@ class Country(models.Model):
     """
     Data model for world counties.
     """
-    iso_3166_alpha2     = models.CharField("iso-3166 alpha2", max_length = 2)
-    iso_3166_alpha3     = models.CharField("iso-3166 alpha3", max_length = 3)
-    iso_3166_numeric    = models.PositiveSmallIntegerField("iso-3166 numberic")
-    regions             = models.ManyToManyField(Region)
+    iso_3166_alpha2     = models.CharField("iso-3166 alpha2", max_length = 2, blank = True)
+    iso_3166_alpha3     = models.CharField("iso-3166 alpha3", max_length = 3, blank = True)
+    iso_3166_numeric    = models.PositiveSmallIntegerField("iso-3166 numberic", blank = True)
+    regions             = models.ManyToManyField(Region, null = True, blank = True)
     name_ar             = models.CharField("name (ar)", max_length = 200, blank = True)
     name_bg             = models.CharField("name (bg)", max_length = 200, blank = True)
     name_bn             = models.CharField("name (bn)", max_length = 200, blank = True)
@@ -244,8 +244,8 @@ class Language(models.Model):
     """
     Data model of world languages.
     """
-    iso_639_2_alpha2    = models.CharField(max_length = 2, unique = True)
-    iso_639_2_alpha3    = models.CharField(max_length = 3, unique = True)
+    iso_639_2_alpha2    = models.CharField(max_length = 2, blank = True)
+    iso_639_2_alpha3    = models.CharField(max_length = 3, blank = True)
     name_ar             = models.CharField("name (ar)", max_length = 200, blank = True)
     name_bg             = models.CharField("name (bg)", max_length = 200, blank = True)
     name_bn             = models.CharField("name (bn)", max_length = 200, blank = True)
